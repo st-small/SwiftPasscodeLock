@@ -38,6 +38,9 @@ open class PasscodeSignPlaceholderView: UIView {
         }
     }
     
+    @IBInspectable
+    open var dotSize: CGFloat = 15
+    
     public override init(frame: CGRect) {
         
         super.init(frame: frame)
@@ -51,8 +54,7 @@ open class PasscodeSignPlaceholderView: UIView {
     }
     
     open override var intrinsicContentSize : CGSize {
-        
-        return CGSize(width: 16, height: 16)
+        return CGSize(width: dotSize, height: dotSize)
     }
     
     fileprivate func setupView() {

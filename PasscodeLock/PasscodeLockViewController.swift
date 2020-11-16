@@ -16,7 +16,7 @@ open class PasscodeLockViewController: UIViewController, PasscodeLockTypeDelegat
         case changePasscode
         case removePasscode
         
-        func getState() -> PasscodeLockStateType {
+        public func getState() -> PasscodeLockStateType {
             
             switch self {
             case .enterPasscode: return EnterPasscodeState()

@@ -105,9 +105,20 @@ open class PasscodeLockViewController: UIViewController, PasscodeLockTypeDelegat
     internal func updatePasscodeView() {
         
         titleLabel?.text = passcodeLock.state.title
+        titleLabel?.textColor = colorsForState(passcodeLock.state)
         descriptionLabel?.text = passcodeLock.state.description
         cancelButton?.isHidden = !passcodeLock.state.isCancellableAction
         touchIDButton?.isHidden = !passcodeLock.isTouchIDAllowed
+    }
+    
+    fileprivate func colorsForState(_ state: PasscodeLockStateType) -> UIColor {
+        
+        switch state.description {
+        case "Passcodes didn\'t match.":
+            return placeholders[0].errorColor
+        default:
+            return placeholders[0].activeColor
+        }
     }
     
     // MARK: - Events
@@ -199,6 +210,7 @@ open class PasscodeLockViewController: UIViewController, PasscodeLockTypeDelegat
     
     internal func animateWrongPassword() {
         
+        titleLabel?.textColor = placeholders[0].errorColor
         deleteSignButton?.isEnabled = false
         isPlaceholdersAnimationCompleted = false
         
@@ -222,6 +234,7 @@ open class PasscodeLockViewController: UIViewController, PasscodeLockTypeDelegat
                 
                 self.isPlaceholdersAnimationCompleted = true
                 self.animatePlaceholders(self.placeholders, toState: .inactive)
+                self.titleLabel?.textColor = self.placeholders[0].activeColor
         })
     }
     

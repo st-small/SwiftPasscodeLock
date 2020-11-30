@@ -48,6 +48,9 @@ open class PasscodeSignPlaceholderView: UIView {
         setupView()
     }
     
+    @IBInspectable
+    open var titleActiveColor: UIColor = UIColor.black
+    
     public required init?(coder aDecoder: NSCoder) {
         
         super.init(coder: aDecoder)
